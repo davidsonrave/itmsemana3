@@ -1,20 +1,32 @@
 import React, { useState } from 'react';
 
+interface FormData {
+  name: string;
+  lastName: string;
+  email: string;
+}
+
+interface SubmittedData {
+  name: string;
+  lastName: string;
+  email: string;
+}
+
 const UserForm: React.FC = () => {
-  const [formData, setFormData] = useState({ name: '', lastName: '', email: '' });
-  const [submittedData, setSubmittedData] = useState<any[]>([]);
+  const [formData, setFormData] = useState<FormData>({ name: '', lastName: '', email: '' });
+  const [submittedData, setSubmittedData] = useState<SubmittedData[]>([]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
+    setFormData((prevFormData) => ({
+      ...prevFormData,
       [name]: value,
-    });
+    }));
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmittedData([...submittedData, formData]);
+    setSubmittedData((prevSubmittedData) => [...prevSubmittedData, formData]);
     setFormData({ name: '', lastName: '', email: '' });
   };
 
