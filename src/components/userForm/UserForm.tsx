@@ -1,3 +1,4 @@
+"use client"
 import React, { useState } from 'react';
 
 interface FormData {
@@ -31,11 +32,13 @@ const UserForm: React.FC = () => {
   };
 
   return (
-    <div>
-      <h1>UserForm</h1>
+    <div className="max-w-md mx-auto mt-8 p-4 border rounded-lg shadow-lg">
+      <h1 className="text-2xl font-semibold mb-4">UserForm</h1>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="name">Nombre:</label>
+        <div className="mb-4">
+          <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+            Nombre:
+          </label>
           <input
             type="text"
             id="name"
@@ -43,10 +46,13 @@ const UserForm: React.FC = () => {
             value={formData.name}
             onChange={handleInputChange}
             required
+            className="mt-1 p-2 block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200"
           />
         </div>
-        <div>
-          <label htmlFor="lastName">Apellido:</label>
+        <div className="mb-4">
+          <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">
+            Apellido:
+          </label>
           <input
             type="text"
             id="lastName"
@@ -54,10 +60,13 @@ const UserForm: React.FC = () => {
             value={formData.lastName}
             onChange={handleInputChange}
             required
+            className="mt-1 p-2 block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200"
           />
         </div>
-        <div>
-          <label htmlFor="email">Correo Electrónico:</label>
+        <div className="mb-4">
+          <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+            Correo Electrónico:
+          </label>
           <input
             type="email"
             id="email"
@@ -65,14 +74,20 @@ const UserForm: React.FC = () => {
             value={formData.email}
             onChange={handleInputChange}
             required
+            className="mt-1 p-2 block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200"
           />
         </div>
-        <button type="submit">Enviar</button>
+        <button
+          type="submit"
+          className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md"
+        >
+          Enviar
+        </button>
       </form>
-      <h2>Lista de Datos Enviados:</h2>
+      <h2 className="text-xl mt-8 font-semibold">Lista de Datos Enviados:</h2>
       <ul>
         {submittedData.map((data, index) => (
-          <li key={index}>
+          <li key={index} className="mt-2">
             Nombre: {data.name}, Apellido: {data.lastName}, Correo: {data.email}
           </li>
         ))}
